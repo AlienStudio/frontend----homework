@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 我的投票 </title>
+		<link rel="stylesheet" href="css/global.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/myIOstream.js" ></script>
+	</head>
+	<body>
+		<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+		<h1> 我的投票 </h1>
+		<div id="app">
+			<li>
+				<div v-for="i in data.length">
+					<ul><a>你是否赞同</a></ul>
+					<ul>
+						<li>
+							<form action="" method="get">
+								<div v-for="vote_option in data[i-1].length-1">
+									<label><input name="option" id="{{i-1}}_{{vote_option-1}}" value="" type="radio"  />
+									   赞同
+									</label>
+									<br />
+									<label><input name="option" id="{{i-1}}_{{vote_option-1}}" value="" type="radio" />
+									   不赞同
+									</label>
+								</div>
+							</form>
+
+						</li>
+					</ul>
+					<ul ><input type="submit" value="提交" onclick="return check()"</ul>
+				</div>
+			</li>
+		</div> 
+		<script>
+			function check(){
+				alert("提交成功");
+				return true;
+			}
+			function valuechange(s){
+				var s1,s2;
+				var i;
+				for (i=0;i<length(s);i++){
+					if (s[i]="_") then break;
+				}
+				for (var j=1;j<i;j++){
+					s1=s1+s[i];
+				}
+				for (var j=i+1;j<length(s);j++){
+					s2:=s2+s[i];
+				}
+				var group=s1;
+				var option_=s2
+				vue.flags[group]=option_;
+			}
+			
+			
+			var vue=new Vue({ 
+				el:'#app',
+				data:{
+					vote_names: input_vote_Name(),
+					data: getAllData(),
+					flags: []
+				},
+				methods:{
+					get_options: function(vote_name){
+						return input_vote_Options(vote_name);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
